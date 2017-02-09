@@ -48,8 +48,17 @@
   </span>
 </div>
 <hr>
-<div class="checkout clearfix">
-  <%= link_to("确认结账", "#", method: :post, class:"btn btn-lg btn-danger pull-right") %>
+<div class="checkout">
+   <div class="margin:5px">
+     <%= link_to("确认结账", "#", method: :post, class:"btn btn-lg btn-danger pull-right") %>
+   </div>
+   <div class="empty">
+     <%= link_to("清空购物车", cart_path(current_cart), method: :delete,:data => {:confirm => "Are you sure?"}, class:"btn btn-lg btn-default pull-right") %>
+   </div> 
+</div>
+
+
+<div class="cleanup clearfix">
 </div>
 </div>
 </div>

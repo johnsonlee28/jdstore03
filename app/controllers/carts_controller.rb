@@ -1,8 +1,7 @@
 class CartsController < ApplicationController
-  def destroy
-    @cart = current_cart
-    @cart.destroy
-    session[:cart_id] = nil
-     redirect_to :back
+  def clean_carts_path
+    current_cart.clean!
+    flash[:warning] = "已清空购物车"
+     redirect_to carts_path
   end
 end

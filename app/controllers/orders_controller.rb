@@ -15,6 +15,8 @@ class OrdersController < ApplicationController
         product_list.quantity = cart_item.quantity
         product_list.save
       end
+      current_cart.clean!
+      OrderMailer.notify_order_placed(@order).deliver!
 
 
       redirect_to order_path(@order.token)
@@ -28,7 +30,7 @@ class OrdersController < ApplicationController
     @product_lists = @order.product_lists
   end
 
-  def pay_with_aplipay
+  def pay_with_alipay
     @order = Order.find_by_token(params[:id])
     @order.set_payment_with!("alipay")
     @order.pay!

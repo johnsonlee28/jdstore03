@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+  <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+  <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+  <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+
+  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+  <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$("form#login-box").bind "ajax:success", (e, data, status, xhr) ->
+    if data.success
+      //javascript that executes if everything goes o.k.
+      $('#sign_in').modal('hide')
+      $('#sign_in_button').hide()
+      $('#submit_comment').slideToggle(1000, "easeOutBack" )
+    else
+      alert('failure!')
+</script>
+</head>
+<body>
+
+<h2> Sign in </h2>
+   <%= devise_error_messages! %>
+   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name) ,:html => {:id => "login-box"},:format => :json, :remote => true ) do |f| %>
+
+   <%= f.password_field :password, :class => "form-control", :placeholder => "Password", autocomplete: "off" %>
+
+       <% if devise_mapping.rememberable? -%>
+       <%= f.check_box :remember_me, :style => "margin-top:20px;margin-bottom:20px;" %>
+       <%= f.label :remember_me, :style => "margin-top:20px;margin-bottom:20px;" %>
+       <% end -%>
+
+
+       <%= f.submit "Sign In", :class => "btn btn-default btn-login" %>
+
+       <% end %>
+    </div>

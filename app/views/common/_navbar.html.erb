@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-default" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -12,12 +14,13 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
            <%= link_to carts_path do %>
-             购物车 <i class="fa fa-shopping-cart"></i>( <%= current_cart.products.count %> )
+             购物车 <i class="fa fa-shopping-cart" id="cart"></i> <span class="badge"><%= current_cart.products.count %></span>
            <% end %>
         </li>
         <% if !current_user %>
           <li><%= link_to("注册",new_user_registration_path) %></li>
-          <li><%= link_to(content_tag(:i,'登入',class:'fa fa-sign-in'),new_user_session_path) %></li>
+
+          <li id="login-button"><%= link_to(content_tag(:i,'登入',class:'fa fa-sign-in'), new_user_session_path) %></li>
         <% else %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -39,3 +42,5 @@
      </div>
    </div>
  </nav>
+
+ 
